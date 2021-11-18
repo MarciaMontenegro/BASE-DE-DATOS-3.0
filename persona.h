@@ -9,7 +9,7 @@ class Persona{
 	int telefono;
 	Persona ();
 	Persona (std::string nombre, int DNI, int telefono);
-    void info();
+    	void info();
 };
 
 #endif
