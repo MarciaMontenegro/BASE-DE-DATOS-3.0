@@ -1,23 +1,21 @@
 #include "cuarto.h"
 
-Cuarto::Cuarto() {
-	numero = 0;
-	precio = 0;
-	estado = 0;
-	camas = 0;
-	tipo = "";
+cuarto::cuarto(){
 }
-Cuarto::Cuarto(int _numero, int _precio, int _estado, int _camas, std::string _tipo){
-	numero=_numero;
+
+cuarto::cuarto(int _precio, int _estado, int _camas, std::string _tipo){
 	precio=_precio;
 	estado=_estado;
 	camas=_camas;
 	tipo=_tipo;
 }
 
-void Cuarto::info(){
-	std::cout<<"Numero de habitacion: "<<numero<<std::endl;
-	std::cout<<"Precio de la habitacion: "<<precio<<std::endl;
-	std::cout<<"Camas: "<<camas<<std::endl;
-	std::cout<<"Tipo de habitación: "<<tipo<<std::endl;
+cuarto::~cuarto(){
+}
+
+void cuarto::info() {
+	std::cout << "Numero de habitacion: " << cuartoID << std::endl;
+	std::cout << "Precio de la habitacion: " << precio << std::endl;
+	std::cout << "Camas: " << camas << std::endl;
+	std::cout << "Tipo de habitación: " << tipo << std::endl;
 }
