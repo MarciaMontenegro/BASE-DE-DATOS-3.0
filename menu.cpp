@@ -10,6 +10,10 @@ menu::menu(std::string _fecha, bool _bucle_main){
 }
 
 menu::~menu(){
+	delete[] ptr_clientes;
+	delete[] ptr_cuartos;
+	delete[] ptr_empleados;
+	delete[] ptr_gastos;
 	
 }
 
