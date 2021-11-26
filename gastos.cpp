@@ -1,18 +1,21 @@
 #include "gastos.h"
 
-Gasto::Gasto() {
-	descripcion = "";
-	codigo = 0;
-	area = "";
+gastos::gastos(){
+	
 }
 
-Gasto::Gasto(std::string _descripcion, int _codigo, std::string _area) {
-	descripcion = _descripcion; codigo = _codigo; area = _area;
-}
- 
-void Gasto::info() {
-	std::cout << "Descripcion del gasto: " << descripcion << std::endl;
-	std::cout << "Codigo: " << codigo << std::endl;
-	std::cout << "Area en la que se requiere el gasto: " << area << std::endl;
+gastos::gastos(std::string _descripcion, std::string _area){
+	descripcion=_descripcion;
+	area=_area;	
 }
 
+gastos::~gastos(){
+}
+
+void gastos::info(){
+	
+}
+
+int gastos::set_gastoID(int _gastoID){
+	gastoID=_gastoID;
+}
