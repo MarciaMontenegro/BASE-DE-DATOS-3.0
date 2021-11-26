@@ -1,15 +1,15 @@
 #include <iostream>
+#include <fstream>
 #include "menu.h"
-#include <string>
+#include "MyLib.h"
+//VIDA LOCA
+bool bucle_main=true;
 
-bool principal = true;
-
-int main() {
-	std::string f;
-	std::cout << "Introduzca la fecha del d�a: ";
-	getline(std::cin, f);
-	menu menu1(f, principal);
-	while (menu1.principall) {
+int main(){
+	std::string f;	
+	std::cout<<"Introduzca la fecha del dia: "; std::cin>>f;
+	menu menu1(f, bucle_main);
+	while (menu1.bucle_main){
 		menu1.mostrar_menu_principal();
 	}
 	return 0;
