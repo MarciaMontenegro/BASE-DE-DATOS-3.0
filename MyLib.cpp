@@ -54,3 +54,5 @@ int cargar_datos_gastos(){
 	datos_gastos.close();
 	return longitud;
 }
+
+
