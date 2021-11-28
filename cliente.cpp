@@ -29,6 +29,7 @@ cliente::~cliente(){
 }
 
 void cliente::info() {
+	std::cout << "ID: " << clienteID << std::endl;
 	std::cout << "Nombre: " << nombre << std::endl;
 	std::cout << "Apellido: " << apellido << std::endl;
 	std::cout << "DNI: " << DNI << std::endl;
@@ -41,6 +42,8 @@ void cliente::info() {
 	
 	
 }
+
+
 
 int cliente::set_clienteID(int _clienteID){
 	clienteID=_clienteID;
