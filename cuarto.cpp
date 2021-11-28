@@ -19,3 +19,7 @@ void cuarto::info() {
 	std::cout << "Camas: " << camas << std::endl;
 	std::cout << "Tipo de habitación: " << tipo << std::endl;
 }
+
+void cuarto::set_cuartoID(int _cuartoID){
+	cuartoID=_cuartoID;
+}
