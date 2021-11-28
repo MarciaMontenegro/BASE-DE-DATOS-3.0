@@ -29,3 +29,4 @@ void empleado::info() {
 	std::cout << "Area en la que trabaja: " << area << std::endl;
 	std::cout << "Horario de " << hora_e << " a " << hora_s << std::endl;
 }
+
