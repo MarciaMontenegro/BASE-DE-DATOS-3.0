@@ -19,3 +19,4 @@ void persona::info() {
 	std::cout << "DNI: " << DNI << std::endl;
 	std::cout << "Telefono: " << telefono << std::endl;
 }
+
