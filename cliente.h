@@ -14,6 +14,7 @@ class cliente : public persona{
 		~cliente();
 		int set_clienteID(int clienteID);
 		void info();
+		void guardar();
 	protected:
 };
 
