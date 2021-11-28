@@ -9,10 +9,13 @@ gastos::gastos(std::string _descripcion, std::string _area){
 	area=_area;	
 }
 
+
 gastos::~gastos(){
 }
 
 void gastos::info(){
+	std::cout << "Descripcion: " << descripcion << std::endl;
+	std::cout << "Area: " << area << std::endl;
 	
 }
 
