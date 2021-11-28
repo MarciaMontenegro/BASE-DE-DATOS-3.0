@@ -15,3 +15,4 @@ class gastos{
 };
 
 #endif
+
