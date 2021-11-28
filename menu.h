@@ -11,16 +11,23 @@ class menu{
 	public:
 		std::string fecha;
 		bool bucle_main;
-		int l_clientes=10, l_empleados=10, l_cuartos=10, l_gastos=10; //EL NUMERO 10 SERA REEMPLAZADO POR EL VALOR POR LEER EN EL ARCHVO .TXT
+		int l_clientes, l_empleados, l_cuartos, l_gastos; //EL NUMERO 10 SERA REEMPLAZADO POR EL VALOR POR LEER EN EL ARCHVO .TXT
 		
-		menu(std::string fecha, bool bucle_main);
+		//PUNTERO DE MEMORIA DINAMICA
+		cliente* ptr_clientes;
+		empleado* ptr_empleados; 
+		cuarto* ptr_cuartos;
+		gastos* ptr_gastos;
+
+		menu();
+		menu(std::string fecha, bool bucle_main, int l_clientes, int l_empleados, int l_cuartos, int l_gastos);
 		~menu();
 
 		//ASIGNACION DE MEMORIA DINAMICA
-		cliente* ptr_clientes = new cliente[l_clientes]; //ptr_clientes[i];	
-		empleado* ptr_empleados = new empleado[l_empleados]; //ptr_empleados[i]
-		cuarto* ptr_cuartos = new cuarto[l_cuartos]; // ptr_cuartos[i]
-		gastos* ptr_gastos = new gastos[l_gastos]; // ptr_gastos[i]
+	//	cliente* ptr_clientes = new cliente[l_clientes]; //ptr_clientes[i];	
+	//	empleado* ptr_empleados = new empleado[l_empleados]; //ptr_empleados[i]
+		//cuarto* ptr_cuartos = new cuarto[l_cuartos]; // ptr_cuartos[i]
+	//	gastos* ptr_gastos = new gastos[l_gastos]; // ptr_gastos[i]
 		
 		
 		void mostrar_menu_voucher();
@@ -53,7 +60,20 @@ class menu{
 		void crear_voucher();
 		void mostrar_voucher();
 		
-		void guardar_datos();
+		//FUNCIONES COPIAR ARCHIVOS DEL TXT A LA RAM
+		void copiar_archivo_clientes();
+		void copiar_archivo_empleados();
+		void copiar_archivo_cuartos();
+		void copiar_archivo_gastos();
+		
+		//FUNCIONES GUARDAR DATOS EN EL ARCHIVO TXT 
+		void guardar_datos_clientes();
+		void guardar_datos_empleados();
+		void guardar_datos_cuartos();
+		void guardar_datos_gastos();
+		
+		
+		
 		
 		
 	protected:
