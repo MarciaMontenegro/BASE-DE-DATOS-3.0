@@ -20,3 +20,4 @@ class empleado: public persona{
 };
 
 #endif
+
