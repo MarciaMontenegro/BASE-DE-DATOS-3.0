@@ -7,12 +7,11 @@ class gastos{
 		std::string area;
 		int gastoID;
 		gastos();
-		gastos(std::string descripcion, std::string area);
+		gastos(int gastoID, std::string descripcion, std::string area);
 		~gastos();
 		void info();
-		int set_gastoID(int gastoID);
+
 	protected:
 };
 
 #endif
-
