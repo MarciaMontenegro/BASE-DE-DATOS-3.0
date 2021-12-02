@@ -5,13 +5,12 @@
 class cuarto
 {
 	public:
-		int cuartoID, precio, estado, camas;
-		std::string tipo;
+		int cuartoID, precio, camas;
+		std::string tipo,estado;
 		cuarto();
-		cuarto(int precio, int estado, int camas, std::string tipo);
+		cuarto(int cuartoID, std::string tipo, int camas, int precio,std::string estado);
 		~cuarto();
 		void info();
-		void set_cuartoID(int cuartoID);
 	protected:
 };
 
