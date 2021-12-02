@@ -1,6 +1,7 @@
 #include "cliente.h"
 
 cliente::cliente() {
+	clienteID = 0;
 	nombre = "";
 	apellido = "";
 	DNI = 0;
@@ -12,8 +13,9 @@ cliente::cliente() {
 	pago = 0;
 }
 
-cliente::cliente(std::string _nombre,std::string _apellido, int _DNI, int _telefono, std::string _rango,
+cliente::cliente(int _clienteID, std::string _nombre,std::string _apellido, int _DNI, int _telefono, std::string _rango,
 	int _check_in, int _check_out, int _num_reserva, float _pago) : persona(_nombre, _DNI, _telefono) {
+	clienteID = _clienteID;
 	nombre = _nombre;
 	apellido= _apellido;
 	DNI = _DNI;
@@ -43,8 +45,3 @@ void cliente::info() {
 	
 }
 
-
-
-int cliente::set_clienteID(int _clienteID){
-	clienteID=_clienteID;
-}
