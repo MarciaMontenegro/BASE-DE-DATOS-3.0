@@ -1,3 +1,4 @@
+
 #ifndef MENU_H
 #define MENU_H
 #include <iostream>
@@ -9,7 +10,7 @@
 
 class menu{
 	public:
-		std::string fecha;
+
 		bool bucle_main;
 		int l_clientes, l_empleados, l_cuartos, l_gastos; //EL NUMERO 10 SERA REEMPLAZADO POR EL VALOR POR LEER EN EL ARCHVO .TXT
 		
@@ -20,24 +21,19 @@ class menu{
 		gastos* ptr_gastos;
 
 		menu();
-		menu(std::string fecha, bool bucle_main, int l_clientes, int l_empleados, int l_cuartos, int l_gastos);
+		menu( bool bucle_main, int l_clientes, int l_empleados, int l_cuartos, int l_gastos);
 		~menu();
-
-		//ASIGNACION DE MEMORIA DINAMICA
-	//	cliente* ptr_clientes = new cliente[l_clientes]; //ptr_clientes[i];	
-	//	empleado* ptr_empleados = new empleado[l_empleados]; //ptr_empleados[i]
-		//cuarto* ptr_cuartos = new cuarto[l_cuartos]; // ptr_cuartos[i]
-	//	gastos* ptr_gastos = new gastos[l_gastos]; // ptr_gastos[i]
-		
-		
-		void mostrar_menu_voucher();
-		void mostrar_menu_eliminar();
-		void mostrar_menu_datos();
-		void mostrar_menu_creadores();
-		void mostrar_menu_principal();
-		void mostrar_menu_gastos();
-		
-		
+				
+		//menu por clases
+		void menu_clientes();
+		void menu_empleados();
+		void menu_cuartos();
+		void menu_gastos();		
+		//funciones ficheros	
+		void guardar_datos();
+		void cargar_datos();
+				
+				
 		//FUNCIONES MENU CREADORES
 		void nuevo_cliente();
 		void nuevo_empleado();
@@ -71,12 +67,6 @@ class menu{
 		void guardar_datos_empleados();
 		void guardar_datos_cuartos();
 		void guardar_datos_gastos();
-		
-		
-		
-		
-		
-	protected:
 };
 
 #endif
