@@ -5,6 +5,7 @@
 
 class cliente : public persona{
 	public:
+	
 		int clienteID;
 		std::string nombre,apellido, rango;
 		int DNI, telefono, check_in, check_out, num_reserva;
