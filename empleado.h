@@ -12,12 +12,10 @@ class empleado: public persona{
 		std::string area;
 		int hora_e, hora_s;
 		empleado();
-		empleado(std::string nombre,std::string apellido, int DNI, int telefono, float sueldo, std::string area, int hora_e, int hora_s);
+		empleado(int empleadoID, std::string nombre,std::string apellido, int DNI, int telefono, float sueldo, std::string area, int hora_e, int hora_s);
 		~empleado();
 		void info();
-		int set_empleadoID(int empleadoID);
 	protected:
 };
 
 #endif
-
