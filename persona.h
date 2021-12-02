@@ -13,6 +13,4 @@ class persona{
 	protected:
 };
 
-
-
 #endif
