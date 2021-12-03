@@ -29,7 +29,9 @@ menu::~menu(){
 
 //MOSTRAR MENU DE...
 
-
+void menu::error(){
+	std::cout<<"\n **NO SE ENCONTRO COINCIDENCIA\n";
+}
 void menu::mostrar_menu_principal() {
 	//std::cout << "\033[H\033[2J\033[3J";
 	std::cout << "\n_____________________________________________________________________________________________________________\n";
@@ -84,10 +86,10 @@ void menu::menu_clientes() {
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|              3. ELIMINAR CLIENTE                                 4. MOSTRAR LISTA DE CLIENTES               | \n";
+	std::cout << "|              3. MOSTRAR LISTA DE CLIENTES                        4.MENU PRINCIPAL                           | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|                                           5.MENU PRINCIPAL                                                  | \n";
+	std::cout << "|                                                                                                             | \n";
 	std::cout << "______________________________________________________________________________________________________________\n";
 	std::cout << " INGRESE LA OPCION: ";
 	switch (_getch()) {
@@ -95,13 +97,42 @@ void menu::menu_clientes() {
 		nuevo_cliente();
 		break;
 	case '2':
-		//s	buscar_clientes();
+		busquedas_cli();
 		break;
 	case '3':
-		eliminar_cliente();
+		mostrar_clientes();
 		break;
 	case '4':
-		mostrar_clientes();
+		std::cout << "\nVolviendo...\n";
+		mostrar_menu_principal();
+		break;
+	default:
+		break;
+	}
+}
+
+void menu::busquedas_cli(){
+	std::cout << "\n*******************************************BUSQUEDA DE CLIENTE***************************************************\n";
+	std::cout<<"\n1. Busqueda por id\n";
+	std::cout<<"2. Busqueda por nombre\n";
+	std::cout<<"3. Busqueda por apellido\n";
+	std::cout<<"4. Busqueda por dni\n";
+	std::cout<<"5. Volver al menu\n";
+	
+	
+	switch (_getch()) {
+	case '1':
+		buscar_cliente_ID();
+		break;
+	case '2':
+		buscar_cliente_nombre();
+		break;
+	case '3':
+		buscar_cliente_apellido();
+		break;
+	case '4':
+		buscar_cliente_DNI();
+		break;
 	case '5':
 		std::cout << "\nVolviendo...\n";
 		mostrar_menu_principal();
@@ -147,18 +178,27 @@ void menu::mostrar_clientes(){
 		std::cout << std::endl;
 	}
 }
-void menu::eliminar_cliente(){
-	std::cout << "\n*******************************************ELIMINAR CLIENTE***************************************************\n";
-	int buscador;
-	std::cout<<"ID de cliente a eliminar: ";
-	std::cin>>buscador;
-	for(int i=0; i<10; i++){
-		if(ptr_clientes[i].clienteID==buscador){
-			ptr_clientes[i].~cliente();
+
+
+void menu::buscar_cliente_apellido(){
+	std::string busqueda;
+	int contador=0;
+	std::cout<<"Cliente a buscar por apellido: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_clientes; i++){
+		if(ptr_clientes[i].apellido==busqueda){
+			contador++;
+			std::cout<<"Cliente encontrado: ";
+			ptr_clientes[i].info();
 			break;
 		}
+			
 	}
-}
+	if (contador==0){
+		error();
+	}
+	
+} 
 
 
 void menu::menu_empleados() {
@@ -172,11 +212,11 @@ void menu::menu_empleados() {
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|              3. ELIMINAR EMPLEADO                               4. MOSTRAR LISTA DE EMPELADOS               | \n";
+	std::cout << "|              3. MOSTRAR LISTA DE EMPELADOS                      4.MENU PRINCIPAL                            | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|                                           5.MENU PRINCIPAL                                                  | \n";
+	std::cout << "|                                                                                                             | \n";
 	std::cout << "______________________________________________________________________________________________________________\n";
 	std::cout << " INGRESE LA OPCION: ";
 	switch (_getch()) {
@@ -184,14 +224,12 @@ void menu::menu_empleados() {
 		nuevo_empleado();
 		break;
 	case '2':
-		//	buscar_empleados();
+		busquedas_em();
 		break;
 	case '3':
-		eliminar_empleado();
+		mostrar_empleados();
 		break;
 	case '4':
-		mostrar_empleados();
-	case '5':
 		std::cout << "\nVolviendo...\n";
 		mostrar_menu_principal();
 		break;
@@ -200,7 +238,52 @@ void menu::menu_empleados() {
 	}
 
 }
+void menu::busquedas_em(){
+	std::cout << "\n*******************************************BUSQUEDAS DE EMPLEADOS***************************************************\n";
+	std::cout<<"\n1. Busqueda por id\n";
+	std::cout<<"2. Busqueda por nombre\n";
+	std::cout<<"3. Busqueda por sector\n";
+	std::cout<<"4. Busqueda por dni\n";
+	std::cout<<"5. Volver al menu\n";
+	
+	switch (_getch()) {
+	case '1':
+		buscar_empleado_ID();
+		break;
+	case '2':
+		buscar_empleado_nombre();
+		break;
+	case '3':
+		buscar_empleado_sector();
+		break;
+	case '4':
+		buscar_empleado_DNI();
+		break;
+	case '5':
+		std::cout << "\nVolviendo...\n";
+		mostrar_menu_principal();
+		break;
+	default:
+		break;
+	}
+}
 
+void menu::buscar_empleado_DNI(){
+	int busqueda,contador=0;
+	std::cout<<"Empleado a buscar por DNI: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_empleados; i++){
+		if(ptr_empleados[i].DNI==busqueda){
+			contador++;
+			std::cout<<"Empleado encontrado: ";
+			ptr_empleados[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
 
 void menu::menu_cuartos() {
 	std::cout << "\n_____________________________________________________________________________________________________________\n";
@@ -213,27 +296,49 @@ void menu::menu_cuartos() {
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|              3. ELIMINAR CUARTO                                4. MOSTRAR LISTA DE CUARTOS                  | \n";
+	std::cout << "|              3. MOSTRAR LISTA DE CUARTOS                        4.MENU PRINCIPAL                            | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|                                           5.MENU PRINCIPAL                                                  | \n";
+	std::cout << "|                                                                                                             | \n";
 	std::cout << "______________________________________________________________________________________________________________\n";
 	std::cout << " INGRESE LA OPCION: ";
+
 	switch (_getch()) {
 	case '1':
 		nuevo_cuarto();
 		break;
 	case '2':
-		//	buscar_cuarto();
+		busquedas_cu();
 		break;
 	case '3':
-		eliminar_cuarto();
+		mostrar_cuartos();
+	case '4':
+		std::cout << "\nVolviendo...\n";
+		mostrar_menu_principal();
+		break;
+	default:
+		break;
+	}
+}
+
+void menu::busquedas_cu(){
+	std::cout << "\n*******************************************BUSQUEDA DE CUARTOS***************************************************\n";
+	std::cout<<"\n1. Busqueda por id\n";
+	std::cout<<"2. Busqueda por precio\n";
+	std::cout<<"3. Busqueda de cuartos desocupados \n";
+	std::cout<<"4. Volver al menu\n";
+	switch (_getch()) {
+	case '1':
+		buscar_cuarto_ID();
+		break;
+	case '2':
+		buscar_cuarto_precio();
+		break;
+	case '3':
+		cuartos_libres();
 		break;
 	case '4':
-		mostrar_cuartos();
-	case '5':
-		
 		std::cout << "\nVolviendo...\n";
 		mostrar_menu_principal();
 		break;
@@ -243,6 +348,7 @@ void menu::menu_cuartos() {
 }
 
 
+		
 void menu::menu_gastos() {
 	std::cout << "\n_____________________________________________________________________________________________________________\n";
 	std::cout << "|                                          ____________________                                               | \n";
@@ -254,10 +360,10 @@ void menu::menu_gastos() {
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|              3. ELIMINAR GASTO                                 4. MOSTRAR LISTA DE GASTOS                   | \n";
+	std::cout << "|              3. MOSTRAR LISTA DE GASTOS                        4.MENU PRINCIPAL                             | \n";
 	std::cout << "|                                                                                                             | \n";
 	std::cout << "|                                                                                                             | \n";
-	std::cout << "|                                           5.MENU PRINCIPAL                                                  | \n";
+	std::cout << "|                                                                                                             | \n";
 	std::cout << "______________________________________________________________________________________________________________\n";
 	std::cout << " INGRESE LA OPCION: ";
 	switch (_getch()) {
@@ -265,14 +371,12 @@ void menu::menu_gastos() {
 		nuevo_gasto();
 		break;
 	case '2':
-		//	buscar_gasto();
+		busquedas_gas();
 		break;
 	case '3':
-		eliminar_gastos();
+		mostrar_gastos();
 		break;
 	case '4':
-		mostrar_gastos();
-	case '5':
 		std::cout << "\nVolviendo...\n";
 		mostrar_menu_principal();
 		break;
@@ -280,6 +384,31 @@ void menu::menu_gastos() {
 		break;
 	}
 }
+
+
+void menu::busquedas_gas(){
+	std::cout << "\n*******************************************BUSQUEDA DE GASTOS***************************************************\n";
+	std::cout<<"\n1. Busqueda por id\n";
+	std::cout<<"2. Busqueda por area\n";
+	std::cout<<"3. Volver al menu\n";
+	switch (_getch()) {
+	case '1':
+		buscar_gasto_ID();
+		break;
+	case '2':
+		buscar_gastos_area();
+		break;
+	case '3':
+		std::cout << "\nVolviendo...\n";
+		mostrar_menu_principal();
+		break;
+	default:
+		break;
+	}
+}
+
+
+	
 
 void menu::mostrar_menu_voucher(){
 	std::cout<<"Menu de datos: "<<std::endl;
@@ -299,46 +428,13 @@ void menu::mostrar_menu_voucher(){
 	}
 }
 
-//FUNCION ELIMINAR
-void menu::eliminar_empleado(){
-	int buscador;
-	std::cout<<"ID de empleado a eliminar: ";
-	std::cin>>buscador;
-	for(int i=0; i<10; i++){
-		if(ptr_empleados[i].empleadoID==buscador){
-			ptr_empleados[i].~empleado();
-			break;
-		}
-	}
-}
-
-void menu::eliminar_cuarto(){
-	int buscador;
-	std::cout<<"ID de empleado a eliminar: ";
-	std::cin>>buscador;
-	for(int i=0; i<10; i++){
-		if(ptr_cuartos[i].cuartoID==buscador){
-			ptr_cuartos[i].~cuarto();
-			break;
-		}
-	}
-}
-
-void menu::eliminar_gastos(){
-	int buscador;
-	std::cout<<"ID de gasto a eliminar: ";
-	std::cin>>buscador;
-	for(int i=0; i<10; i++){
-		if(ptr_gastos[i].gastoID==buscador){
-			ptr_gastos[i].~gastos();
-			break;
-		}
-	}
-}
 
 //FUNCIONES MENU CREADORES
 
+
+
 void menu::nuevo_empleado(){
+	std::cout << "\n*******************************************NUEVO EMPLEADO***************************************************\n";
 	std::string nombre, apellido,area;
 	int dni,cel,hentrada,hsalida;
 	float s;
@@ -360,6 +456,7 @@ void menu::nuevo_empleado(){
 }
 
 void menu::nuevo_cuarto(){
+	std::cout << "\n*******************************************NUEVO CUARTO**************************************************\n";
 	std::string tipo,estado;
 	int precio,camas;
 	
@@ -376,8 +473,8 @@ void menu::nuevo_cuarto(){
 	}
 }
 
-
 void menu::nuevo_gasto(){
+	std::cout << "\n*******************************************NUEVO GASTO***************************************************\n";
 	std::string descripcion;
 	std::string area;
 	std::cout << "Descripcion del gasto: "; std::cin>>descripcion; std::cout<< std::endl;
@@ -392,7 +489,9 @@ void menu::nuevo_gasto(){
 
 //FUNCIONES MENU MOSTRAR DATOS
 
+
 void menu::mostrar_empleados(){
+	std::cout << "\n*******************************************MOSTRAR EMPLEADOS***************************************************\n";
 	for (int i = 0; i < l_empleados; i++) {
 		if (ptr_empleados[i].nombre != "") {
 			ptr_empleados[i].info();
@@ -402,6 +501,7 @@ void menu::mostrar_empleados(){
 }
 
 void menu::mostrar_cuartos(){
+	std::cout << "\n*******************************************MOSTRAR CUARTOS***************************************************\n";
 	for (int i = 0; i < l_cuartos; i++) {
 		if (ptr_cuartos[i].precio != 0) {
 			std::cout << "Cuartos" << i << std::endl;
@@ -412,11 +512,11 @@ void menu::mostrar_cuartos(){
 }
 
 void menu::mostrar_gastos(){
+	std::cout << "\n*******************************************MOSTRAR GASTOS***************************************************\n";
 	for (int i = 0; i < l_gastos; i++) {
 		if (ptr_gastos[i].descripcion != "") {
 			std::cout << "Gastos" << i << std::endl;
 			ptr_gastos[i].info();
-			
 		}
 		std::cout << std::endl;
 	}
@@ -556,18 +656,6 @@ void menu::guardar_datos_gastos(){
 
 }	
 
-
-
-void menu::cargar_datos(){
-	copiar_archivo_clientes();
-	copiar_archivo_empleados();
-	copiar_archivo_cuartos();
-	copiar_archivo_gastos();
-
-}
-
-
-
 //FUNCIONES COPIAR ARCHIVOS DEL TXT A LA RAM
 
 void menu::copiar_archivo_clientes(){
@@ -677,7 +765,6 @@ void menu::copiar_archivo_gastos(){
 		datos_gastos>>gastoID;
 		datos_gastos>>descripcion;
 		datos_gastos>>area;
-		
 	for (int i = 0; i < l_gastos; i++){
 		if (ptr_gastos[i].descripcion == ""){
 			ptr_gastos[i]= gastos(gastoID,descripcion,area);
@@ -688,9 +775,208 @@ void menu::copiar_archivo_gastos(){
 	datos_gastos.close();	
 }
 
+//FUNCIONES DE BUSQUEDA
+void menu::buscar_cliente_ID(){
+	int busqueda;
+	int contador=0;
+	std::cout<<"Cliente a buscar por ID: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_clientes; i++){
+		if(ptr_clientes[i].clienteID==busqueda){
+			contador++;
+			std::cout<<"Cliente encontrado:\n";
+			ptr_clientes[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
 
+void menu::buscar_cliente_nombre(){
+	std::string busqueda;
+	int contador=0;
+	std::cout<<"Cliente a buscar por nombre: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_clientes; i++){
+		if(ptr_clientes[i].nombre==busqueda){
+			contador++;
+			std::cout<<"Cliente encontrado:\n";
+			ptr_clientes[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+void menu::buscar_cliente_DNI(){
+	int busqueda;
+	int contador=0;
+	std::cout<<"Cliente a buscar por DNI: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_clientes; i++){
+		if(ptr_clientes[i].DNI==busqueda){
+			contador++;
+			std::cout<<"Cliente encontrado:\n";
+			ptr_clientes[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
 
+void menu::buscar_cuarto_ID(){
+	int busqueda;
+	int contador=0;
+	std::cout<<"Cuarto a buscar por ID: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_cuartos; i++){
+		if(ptr_cuartos[i].cuartoID==busqueda){
+			contador++;
+			std::cout<<"Cuarto encontrado:\n";
+			ptr_cuartos[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
 
+void menu::buscar_cuarto_precio(){
+	int busqueda,contador=0;
+	std::cout<<"Cuarto a buscar por precio: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_cuartos; i++){
+		if(ptr_cuartos[i].precio==busqueda){
+			contador++;
+			std::cout<<"Cuarto encontrado:\n";
+			ptr_cuartos[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+
+void menu::cuartos_libres(){
+	int contador=0;
+	for(int i=0; i<l_cuartos; i++){
+		if(ptr_cuartos[i].estado=="DISPONIBLE"){
+			contador++;
+			std::cout<<"Cuarto encontrado:\n";
+			ptr_cuartos[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+
+void menu::asignar_cuarto(){
+	for (int i=0; i<l_clientes; i++){
+		for (int j=0; j<l_cuartos; j++){
+			if(ptr_clientes[i].num_reserva==ptr_cuartos[j].cuartoID){
+				ptr_cuartos[j].estado="OCUPADO";
+			}
+			else{
+				ptr_cuartos[j].estado="DISPONIBLE";
+			}
+		}
+	}
+}
+
+void menu::buscar_empleado_ID(){
+	int contador=0;
+	int busqueda;
+	std::cout<<"Buscar empleados por ID: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_empleados; i++){
+		contador++;
+		if(ptr_empleados[i].empleadoID==busqueda){
+			std::cout<<"Empleado encontrado:\n";
+			ptr_empleados[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+void menu::buscar_empleado_nombre(){
+	int contador=0;
+	std::string busqueda;
+	std::cout<<"Buscar empleados por nombre: ";
+	std::cin>>busqueda;
+	for(int i=0; i<l_empleados; i++){
+		if(ptr_empleados[i].nombre==busqueda){
+			contador++;
+			std::cout<<"Empleado encontrado:\n";
+			ptr_empleados[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+void menu::buscar_empleado_sector(){
+	int contador=0;
+	std::string busqueda;
+	std::cout<<"Buscar empleados por sector: ";
+	std::cin>>busqueda;
+	std::cout<<"Empleados en el sector "<<busqueda<<"\n";
+	for(int i=0; i<l_empleados; i++){
+		if(ptr_empleados[i].nombre==busqueda){
+			contador++;
+			ptr_empleados[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+
+void menu::buscar_gasto_ID(){
+	int busqueda,contador=0;
+	std::cout<<"Buscar gastos por ID: ";
+	std::cin>>busqueda;
+	std::cout<<"Empleados en el sector "<<busqueda<<"\n";
+	for(int i=0; i<l_gastos; i++){
+		if(ptr_gastos[i].gastoID==busqueda){
+			contador++;
+			ptr_gastos[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
+void menu::buscar_gastos_area(){
+	int contador=0;
+	std::string busqueda;
+	std::cout<<"Buscar gastos por area: ";
+	std::cin>>busqueda;
+	std::cout<<"Empleados en el sector "<<busqueda<<"\n";
+	for(int i=0; i<l_gastos; i++){
+		if(ptr_gastos[i].area==busqueda){
+			contador++;
+			ptr_gastos[i].info();
+			break;
+		}
+	}
+	if (contador==0){
+		error();
+	}
+}
 	
 	
 	
