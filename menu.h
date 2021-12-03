@@ -1,4 +1,3 @@
-
 #ifndef MENU_H
 #define MENU_H
 #include <iostream>
@@ -21,19 +20,24 @@ class menu{
 		gastos* ptr_gastos;
 
 		menu();
-		menu( bool bucle_main, int l_clientes, int l_empleados, int l_cuartos, int l_gastos);
+		menu(bool bucle_main, int l_clientes, int l_empleados, int l_cuartos, int l_gastos);
 		~menu();
 				
-		//menu por clases
+				
 		void menu_clientes();
 		void menu_empleados();
 		void menu_cuartos();
 		void menu_gastos();		
-		//funciones ficheros	
+				
 		void guardar_datos();
-		void cargar_datos();
 				
 				
+				
+		void mostrar_menu_voucher();
+		void mostrar_menu_principal();
+		void mostrar_menu_gastos();
+		
+		
 		//FUNCIONES MENU CREADORES
 		void nuevo_cliente();
 		void nuevo_empleado();
@@ -46,11 +50,6 @@ class menu{
 		void mostrar_cuartos();
 		void mostrar_gastos();
 
-		//FUNCIONES MENU ELIMINAR
-		void eliminar_cliente();
-		void eliminar_empleado();
-		void eliminar_cuarto();
-		void eliminar_gastos();
 
 		//FUNCIONES MENU VOUCHER
 		void crear_voucher();
@@ -67,6 +66,34 @@ class menu{
 		void guardar_datos_empleados();
 		void guardar_datos_cuartos();
 		void guardar_datos_gastos();
+		
+		
+		//NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO NUEVO
+		//FUNCIONES DE BUSQUEDA
+		void busquedas_cli();
+		void buscar_cliente_ID();
+		void buscar_cliente_nombre();
+		void buscar_cliente_DNI();
+		void buscar_cliente_apellido();
+		
+		void busquedas_em();
+		void buscar_empleado_ID();
+		void buscar_empleado_nombre();
+		void buscar_empleado_sector();
+		void buscar_empleado_DNI();
+		
+		void busquedas_cu();
+		void buscar_cuarto_ID();
+		void buscar_cuarto_precio();
+		
+		void busquedas_gas();
+		void buscar_gasto_ID();
+		void buscar_gastos_area();
+		
+		void cuartos_libres();
+		void asignar_cuarto();
+		
+		void error();
 };
 
 #endif
